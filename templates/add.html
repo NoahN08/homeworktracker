@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Assignment</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Add Assignment</h1>
+    <a href="/">&#8592; Back to list</a>
+
+    <form method="POST" action="/add">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="{{ title }}" placeholder="e.g. Chapter 5 review">
+            {% if errors.title %}
+            <span class="error">{{ errors.title }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="class_name">Class</label>
+            <input type="text" id="class_name" name="class_name" value="{{ class_name }}" placeholder="e.g. AP Calculus">
+            {% if errors.class_name %}
+            <span class="error">{{ errors.class_name }}</span>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="due_date">Due Date</label>
+            <input type="date" id="due_date" name="due_date" value="{{ due_date }}">
+            {% if errors.due_date %}
+            <span class="error">{{ errors.due_date }}</span>
+            {% endif %}
+        </div>
+
+        <button type="submit">Add Assignment</button>
+    </form>
+</body>
+</html>

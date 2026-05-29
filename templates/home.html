@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Homework Tracker</h1>
+    <a class="btn" href="/add">+ Add Assignment</a>
+
+    <h2>Upcoming</h2>
+    {% if upcoming %}
+    <ul class="assignment-list">
+        {% for assignment in upcoming %}
+        <li class="assignment{% if assignment.due_date < today %} overdue{% endif %}">
+            <div class="info">
+                <span class="title">{{ assignment.title }}</span>
+                <span class="meta">{{ assignment.class_name }} &mdash; Due {{ assignment.due_date }}</span>
+            </div>
+            {% if assignment.due_date < today %}
+            <span class="badge overdue-badge">OVERDUE</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No upcoming assignments. Nice work!</p>
+    {% endif %}
+
+    <h2>Completed</h2>
+    {% if done %}
+    <ul class="assignment-list">
+        {% for assignment in done %}
+        <li class="assignment done">
+            <div class="info">
+                <span class="title">{{ assignment.title }}</span>
+                <span class="meta">{{ assignment.class_name }} &mdash; Due {{ assignment.due_date }}</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No completed assignments yet.</p>
+    {% endif %}
+</body>
+</html>
